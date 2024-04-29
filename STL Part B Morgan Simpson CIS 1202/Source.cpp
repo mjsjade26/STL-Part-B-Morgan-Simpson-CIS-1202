@@ -3,6 +3,7 @@
 // April 29th 2024
 
 #include <iostream>
+#include <cmath>
 #include <type_traits>
 
 template<typename T>
@@ -11,10 +12,8 @@ half(T value) {
     return value / 2.0;
 }
 
-template<typename T>
-typename std::enable_if<std::is_integral<T>::value, T>::type
-half(T value) {
-    return (value + (value % 2 == 0 ? 0 : 1)) / 2;
+int half(int value) {
+    return static_cast<int>(std::round(static_cast<double>(value) / 2.0));
 }
 
 int main() {
